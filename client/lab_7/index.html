@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Jaeha Song - Lab 1</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <h1>Jaeha Song's Labs for INST377</h1>
+      </div>
+
+      <div class="container">
+        <div class="left_section box">
+          <div class="header">
+            <h3>Form Inputs</h3>
+          </div>
+          <form class="box main_form" action="/api">
+            <div>
+                <label for="resto">Restaurant Name</label>
+                <input type="text" name="resto" id="resto">
+            </div>
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            <button type="submit" id="get-resto">Submit</button>
+        </form>
+        </div>
+
+        <div class="right_section box">
+          <div class="header">
+            <h2>Local Restaurants</h2>
+          </div>
+          <div class="box" id="restaurant_list">
+            <p>A list of restaurants from an API.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        jsong073-UMD
+        <a
+          href="https://github.com/jsong073-UMD/INST377-Lab-Work"
+          target="blank"
+          >Link to gitHub</a
+        >
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+<!--
+    This is how to build the CSS-only load animation from loading.io    
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+
+    This is helpful for showing your client-side users when data is loading,
+    since there's otherwise no sign your app is thinking about something!
+
+    Try placing it at the same level in your element tree as your Submit button
+-->
