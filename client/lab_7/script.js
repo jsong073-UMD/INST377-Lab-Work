@@ -77,6 +77,7 @@ function processRestaurants(list) {
 // good programming practice: one idea per line
 function filterList(array, filterInputValue) {
   const newArray = array.filter((item) => { // .filter(array) checks if true and adds the item to a new array
+    if (!item.name) { return; }
     const lowerCaseName = item.name.toLowerCase();
     const lowerCaseQuery = filterInputValue.toLowerCase();
     return lowerCaseName.includes(lowerCaseQuery);
