@@ -36,7 +36,7 @@ function injectHTML(list) {
   console.log('fired injectHTML');
   const target = document.querySelector('#restaurant_list');
   target.innerHTML = '';
-  
+
   const listEl = document.createElement('ol');
   target.appendChild(listEl);
   list.forEach((item) => {
@@ -49,10 +49,10 @@ function injectHTML(list) {
 function processRestaurants(list) {
   console.log('fired restaurants list');
   const range = [...Array(15).keys()]; // Special notation to create an array of 15 elements
-  const newArray = range.map((item) => { 
+  const newArray = range.map((item) => {
     const index = getRandomIntInclusive(0, list.length);
     return list[index];
-  })
+  });
   return newArray;
   /*
     ## Process Data Separately From Injecting It
@@ -81,8 +81,18 @@ function filterList(array, filterInputValue) {
     const lowerCaseName = item.name.toLowerCase();
     const lowerCaseQuery = filterInputValue.toLowerCase();
     return lowerCaseName.includes(lowerCaseQuery);
-  })
+  });
   return newArray;
+}
+
+function initMap() {
+  console.log('initMap');
+  const map = L.map('map').setView([38.7849, -76.8721], 13);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+  return map;
 }
 
 async function mainEvent() {
@@ -92,7 +102,7 @@ async function mainEvent() {
       When you're not working in a heavily-commented "learning" file, this also is more legible
       If you separate your work, when one piece is complete, you can save it and trust it
   */
-
+  const pageMap = initMap();
   // the async keyword means we can make API requests
   const form = document.querySelector('.main_form'); // get your main form so you can do JS with it
   const submit = document.querySelector('#get-resto'); // get a reference to your submit button
@@ -124,7 +134,7 @@ async function mainEvent() {
 
   // This IF statement ensures we can't do anything if we don't have information yet
   if (!arrayFromJson.data?.length) { return; } // Return if we have no data aka array has no length
-  
+
   submit.style.display = 'block'; // let's turn the submit button back on by setting it to display as a block when we have data available
 
   // hides loading animation once data has been loaded
@@ -133,7 +143,7 @@ async function mainEvent() {
 
   let currentList = []; // used by both event listeners, allows them to interact with each other
 
-  form.addEventListener('input', (event) =>{ // event bubbling
+  form.addEventListener('input', (event) => { // event bubbling
     console.log('input', event.target.value); // <input> contents
     const newFilterList = filterList(currentList, event.target.value); // filters currentList
     injectHTML(newFilterList);
